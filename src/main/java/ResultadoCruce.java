@@ -4,17 +4,21 @@ import java.util.List;
 public class ResultadoCruce  extends Resultados{
     public List<Rompecabezas> rompecabezas;
     public tipoCruce cruce;
-
-    public ResultadoCruce(int memoria, double tiempo, int asignaciones, int comparaciones, int totalInstrucciones, List<Rompecabezas> rompecabezas,tipoCruce cruce) {
+    public int dimension;
+    
+    public ResultadoCruce(int memoria, double tiempo, int asignaciones, 
+            int comparaciones, int totalInstrucciones, List<Rompecabezas> rompecabezas,tipoCruce cruce, int dimension) {
         super(memoria, tiempo, asignaciones, comparaciones, totalInstrucciones);
         this.rompecabezas = rompecabezas;
         this.cruce = cruce;
+        this.dimension = dimension;
     }
 
-    public ResultadoCruce(Resultados resultados, List<Rompecabezas> rompecabezas,tipoCruce cruce) {
+    public ResultadoCruce(Resultados resultados, List<Rompecabezas> rompecabezas,tipoCruce cruce, int dimension) {
         super(resultados.getMemoria(), resultados.getTiempo(), resultados.getAsignaciones(), resultados.getComparaciones(), resultados.getLineas());
         this.rompecabezas = rompecabezas;
         this.cruce = cruce;
+        this.dimension = dimension;
     }
     
     public String imprimirRompecabezas(){
@@ -26,7 +30,8 @@ public class ResultadoCruce  extends Resultados{
     
     @Override
     public String toString() {
-        return "Tipocruce: " + cruce +
+        return "Tipo de cruce: " + cruce +
+                "\nDimension: " + dimension + "x" + dimension +
                 "\nMemoria: " + super.getMemoria() + 
                 "\nTiempo: " +  super.getTiempo() + 
                 "\nAsignaciones: " +  super.getAsignaciones() + 
