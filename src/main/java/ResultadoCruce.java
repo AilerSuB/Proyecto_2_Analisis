@@ -12,7 +12,7 @@ public class ResultadoCruce  extends Resultados{
     }
 
     public ResultadoCruce(Resultados resultados, List<Rompecabezas> rompecabezas,tipoCruce cruce) {
-        super(resultados.getMemoria(), resultados.getTiempo(), resultados.getAsignaciones(), resultados.getComparaciones(), resultados.getTotalInstrucciones());
+        super(resultados.getMemoria(), resultados.getTiempo(), resultados.getAsignaciones(), resultados.getComparaciones(), resultados.getLineas());
         this.rompecabezas = rompecabezas;
         this.cruce = cruce;
     }
@@ -31,7 +31,7 @@ public class ResultadoCruce  extends Resultados{
                 "\nTiempo: " +  super.getTiempo() + 
                 "\nAsignaciones: " +  super.getAsignaciones() + 
                 "\nComparaciones: " +  super.getComparaciones() + 
-                "\nTotal Instrucciones: " +  super.getTotalInstrucciones() + 
+                "\nLineas: " +  super.getLineas() + 
                 "\n5 mejores: " + imprimirRompecabezas();
     }
 }

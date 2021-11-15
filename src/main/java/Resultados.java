@@ -4,15 +4,15 @@ public class Resultados {
     public double tiempo = 0;
     public int asignaciones = 0;
     public int comparaciones = 0;
-    public int totalInstrucciones = 0;
+    public int lineas = 0;
 
     public Resultados(int memoria, double tiempo, int asignaciones, int comparaciones, 
-            int totalInstrucciones) {
+            int lineas) {
         this.memoria = memoria;
         this.tiempo = tiempo;
         this.asignaciones = asignaciones;
         this.comparaciones = comparaciones;
-        this.totalInstrucciones = totalInstrucciones;
+        this.lineas = lineas;
     }
 
     public Resultados() {
@@ -62,15 +62,15 @@ public class Resultados {
         this.tiempo = tiempo;
     }
 
-    public int getTotalInstrucciones() {
-        return totalInstrucciones;
+    public int getLineas() {
+        return lineas;
     }
 
-    public void setTotalInstrucciones(int totalInstrucciones) {
-        this.totalInstrucciones = totalInstrucciones;
+    public void setLineas(int lineas) {
+        this.lineas = lineas;
     }
 
-    public void aumentarTotalInstrucciones(int aumento) {
-        this.totalInstrucciones += aumento;
+    public void aumentarLineas(int aumento) {
+        this.lineas += aumento;
     }
 }
