@@ -1,7 +1,8 @@
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 
-public class Rompecabezas  implements Cloneable {
+public class Rompecabezas  implements Cloneable{
     //Está clase obtiene una función qeu se basa en la ejecución de 3 CASOS:
     //Caso#1: Se crea la primera pieza totalmente aleatoria, por tanto la fila y la columna es igual a 0
     //Caso #2: Cuando la fila es igual a cero pero la columna no, Se crea la primera fila donde todos sus números son aleatorios excepto el último, que es semejante al número aleatorio de la pieza anterior.
@@ -12,8 +13,16 @@ public class Rompecabezas  implements Cloneable {
     // En caso de que el rompecabezas tenga un pieza repetida, se procede a rehacer el rompecabezas.
     private LinkedList<Pieza> rompecabezas = new LinkedList<>();// Lista con el rompecabezas ordenado.
     private LinkedList<Integer> inicio = new LinkedList<>();  // Lista que obtiene los  primeros números que van en todas piezas que no pertenecen a la fila 1.
+    private int puntuacion;
 
-    public LinkedList<Pieza> crearRompecabezas (int cont, int num){ // Se encarga de crear el rompecabezas ordenado insertandolo en una lista.
+    public Rompecabezas() {
+    }
+    
+    public Rompecabezas (LinkedList<Pieza> rompecabezas){
+        this.rompecabezas = rompecabezas;
+    }
+    
+    public void crearRompecabezas (int cont, int num){ // Se encarga de crear el rompecabezas ordenado insertandolo en una lista.
         for(int i=0; i<cont; i++){ // Guía la fila
             for(int j=0; j<cont; j++){ //Guía la columna
                 if(i==0 ){
@@ -40,8 +49,22 @@ public class Rompecabezas  implements Cloneable {
             this.crearRompecabezas(cont, num);
         }
         Collections.shuffle(rompecabezas);
-//        desordenar();
+    }
+
+    public int getPuntuacion() {
+        return puntuacion;
+    }
+
+    public void setPuntuacion(int puntuacion) {
+        this.puntuacion = puntuacion;
+    }
+
+    public LinkedList<Pieza> getRompecabezas() {
         return rompecabezas;
+    }
+
+    public void setRompecabezas(LinkedList<Pieza> rompecabezas) {
+        this.rompecabezas = rompecabezas;
     }
     
     public boolean verificarPiezas(){
@@ -55,11 +78,12 @@ public class Rompecabezas  implements Cloneable {
         return false;
     }
     
-    public void imprimir(){
+    public void imprimirDebug(){
+        System.out.print("[");
         rompecabezas.forEach((pieza) -> {
-            System.out.print(pieza.toString() + "\n");
+            System.out.print(pieza.toString() + ", ");
         });
-        System.out.println();
+        System.out.println("] " + "Aptitud: " + puntuacion);
     }
     
     public void desordenar(){
@@ -78,6 +102,16 @@ public class Rompecabezas  implements Cloneable {
             posiblesIndices.remove(indiceTomar);
         }
         rompecabezas = newRompecabezas;
+    }
+    
+    public static Comparator<Rompecabezas> ptsComparador = new Comparator<Rompecabezas>() {
+        public int compare(Rompecabezas puzzle1, Rompecabezas puzzle2) {
+	   return puzzle2.getPuntuacion()-puzzle1.getPuntuacion();
+    }};
+    
+    @Override
+    public String toString() {
+        return "Puntuacion: " + puntuacion + " | Rompecabezas: " + rompecabezas.toString();
     }
     
     @Override
