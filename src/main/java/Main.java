@@ -25,7 +25,7 @@ public class Main {
     
     public static void main(String[] args) throws CloneNotSupportedException {
         Map<Integer, int[]> valores = new HashMap() {{ 
-            put(3, new int[] {3,30,12,50});// dimension nPoblacion valorResuelto pesoGeneracion
+            put(3, new int[] {3,30,12,50}); // dimension nPoblacion valorResuelto pesoGeneracion
             put(5, new int[] {5,60,40,60});
             put(7, new int[] {7,90,84,70});
         }};
@@ -49,7 +49,7 @@ public class Main {
         }
         
         System.out.println("---------------------------");
-        System.out.println("Mutaciones y cruces");
+        System.out.println("----Mutaciones y cruces----");
         System.out.println("---------------------------");
         for (int dimension = 3; dimension < 8; dimension+=2) {
             System.out.println(crucesYMutaciones.get(dimension).get(0));
@@ -84,7 +84,28 @@ public class Main {
     
     /*
     * Funcion encargada de realizar los cruces, dados estos por 'stringCruce'
-    * 
+    * Cruce MultiPunto:
+    *       1 - Hace un recorrido de dimension*dimension, 
+    *       2 - Cuando el contador del recorrido es par asigna:
+    *           A hijo0 la pieza actual del padre y a hijo1 la pieza acutal de la madre
+    *       3 - Cuando el contador del recorrido es impar asigna:
+    *           A hijo0 la pieza actual de la madre y a hijo1 la pieza acutal del padre
+    *
+    * Cruce BasadoPunto:
+    *       1 - Hace un recorrido de dimension*dimension
+    *       2 - Si el contador actual es <= a la mitad de la dimension*dimension se le asigna: 
+    *           A hijo0 la pieza actual del padre y a hijo1 la pieza acutal de la madre
+    *       3 - Si el contador actual es > a la mitad de la dimension*dimension se le asigna: 
+    *           A hijo0 la pieza actual de la madre y a hijo1 la pieza acutal del padre
+    *
+    * Cruce Uniforme:
+    *       1 - Hace un recorrido de dimension*dimension
+    *       2 - Se hace un valor random entre 0 y 1:
+    *       3 - Si este valor es 0 se asigna:
+    *           A hijo0 la pieza actual del padre y a hijo1 la pieza acutal de la madre
+    *       4 - Si este valor es 1 se asigna:
+    *           A hijo0 la pieza actual de la madre y a hijo1 la pieza acutal del padre
+    *
     * Retorna un objecto 'ResultadoCruce', esta contiene todos los datos para el analis del algoritmo
     */    
     public static ResultadoCruce cruce(ArrayList<Rompecabezas> poblacionBase, 
@@ -376,6 +397,8 @@ public class Main {
     *       | - - - | | - - - |
     *       | - - - | | - - - |
     *       | A B - | | B A - |
+    *
+    * Retorna la lista de piezas
     */
     public static LinkedList<Pieza> mutar(LinkedList<Pieza> lista, int dimesion){
         int count = 0;
@@ -469,6 +492,7 @@ public class Main {
     *               - - - | 
     *               - - - | 
     *               A B - |
+    *
     * Retorna el valor total de las piezas verificadas, con casillas adyacentes iguales (dados los casos anteriores)
     */ 
     public static int aptitudSinImpacto(LinkedList<Pieza> lista, int dimension){
@@ -509,6 +533,7 @@ public class Main {
     *               - - - | 
     *               - - - | 
     *               A B - |
+    *
     * Retorna el valor total de las piezas verificadas, con casillas adyacentes iguales (dados los casos anteriores)
     */ 
     public static int aptitud(LinkedList<Pieza> lista, int dimension){
