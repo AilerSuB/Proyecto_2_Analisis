@@ -1,3 +1,4 @@
+// Creado Sabodo 13 nov 2021
 /**        
 . La clase Pieza contiene los atributos y funciones de get para la posterior formación del rompecabezas. 
 * Cada pieza se representa por cuatro atributos: piezaArriba (índice 0), piezaDerecha (índice 1), piezaAbajo (índice 2) y piezaIzquierda (índice 3),
@@ -20,8 +21,8 @@ public class Pieza implements Cloneable {
         this.piezaIzquierda = piezaIzquierda;
     }
 
-    public Pieza() {
-    }
+    public Pieza() {}
+    
     //Funciones get que retornan el número correspondiente a cada indice de la pieza, sea está derecha, izquierda, arriba y abajo.
     public int getPiezaArriba() {
         return piezaArriba;
@@ -54,15 +55,17 @@ public class Pieza implements Cloneable {
     public void setPiezaIzquierda(int piezaIzquierda) {
         this.piezaIzquierda = piezaIzquierda;
     }
-
+    
+    // Funcion que se encarga de retornar las 4 piezas para imprimirlas posteriormente
     @Override
     public String toString() {
         return piezaArriba + "," + piezaDerecha + "," + piezaAbajo + "," + piezaIzquierda;
     }
-
+    
+    // Metodo que se clonar el objecto Pieza.
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        return super.clone(); //To change body of generated methods, choose Tools | Templates.
+        return (Pieza) super.clone(); 
     }
     
 }

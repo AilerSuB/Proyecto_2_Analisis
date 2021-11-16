@@ -1,8 +1,9 @@
+// Creado Sabodo 13 nov 2021
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 
-public class Rompecabezas  implements Cloneable{
+public class Rompecabezas implements Cloneable{
     //Está clase obtiene una función qeu se basa en la ejecución de 3 CASOS:
     //Caso#1: Se crea la primera pieza totalmente aleatoria, por tanto la fila y la columna es igual a 0
     //Caso #2: Cuando la fila es igual a cero pero la columna no, Se crea la primera fila donde todos sus números son aleatorios excepto el último, que es semejante al número aleatorio de la pieza anterior.
@@ -50,7 +51,11 @@ public class Rompecabezas  implements Cloneable{
         }
         Collections.shuffle(rompecabezas);
     }
-
+    
+    /*
+    * Funciones 'get' retornan  los atributos
+    * Funciones 'set' cambian los atributos
+    */
     public int getPuntuacion() {
         return puntuacion;
     }
@@ -67,6 +72,10 @@ public class Rompecabezas  implements Cloneable{
         this.rompecabezas = rompecabezas;
     }
     
+    /*
+    * Está funcion se encarga de verificar que el rompecabezas no contenga ninguna pieza repetida.
+    * En caso de encontrar una pieza repetida retorna 'true', caso contrario retorna 'false'
+    */
     public boolean verificarPiezas(){
         LinkedList<String> listaPiezas = new LinkedList();
         for(Pieza piezaTemporal: rompecabezas){
@@ -78,44 +87,21 @@ public class Rompecabezas  implements Cloneable{
         return false;
     }
     
-    public void imprimirDebug(){
-        System.out.print("[");
-        rompecabezas.forEach((pieza) -> {
-            System.out.print(pieza.toString() + ", ");
-        });
-        System.out.println("] " + "Aptitud: " + puntuacion);
-    }
-    
-    public void desordenar(){
-        LinkedList<Pieza> newRompecabezas = new LinkedList<>(); 
-        LinkedList<Integer> posiblesIndices = new LinkedList<>();
-        int indiceTomar = 0;
-        
-        for (int i = 0; i < rompecabezas.size(); i++){
-            newRompecabezas.add(new Pieza());
-            posiblesIndices.add(i);
-        }
-        
-        for (int i = 0; i < rompecabezas.size(); i++){
-            indiceTomar = (int) ((Math.random()*posiblesIndices.size())); // Selecciona de forma aleatoria el indice a tomar de la lista de indices
-            newRompecabezas.set(indiceTomar, rompecabezas.get(i));
-            posiblesIndices.remove(indiceTomar);
-        }
-        rompecabezas = newRompecabezas;
-    }
-    
+    // Interfaz usada para comparar los rompecabezas y ordenarlas por su puntiación
     public static Comparator<Rompecabezas> ptsComparador = new Comparator<Rompecabezas>() {
         public int compare(Rompecabezas puzzle1, Rompecabezas puzzle2) {
 	   return puzzle2.getPuntuacion()-puzzle1.getPuntuacion();
     }};
     
+    // Funcion encargada de retornar la puntuacion junto a su rompecabezas, para imprimirlos posteriormente.
     @Override
     public String toString() {
         return "Puntuacion: " + puntuacion + " | Rompecabezas: " + rompecabezas.toString();
     }
     
+    // Metodo usado para clonar un objecto
     @Override
     protected Rompecabezas clone() throws CloneNotSupportedException {
-        return (Rompecabezas) super.clone(); //To change body of generated methods, choose Tools | Templates.
+        return (Rompecabezas) super.clone(); 
     }
 }

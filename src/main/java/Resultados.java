@@ -1,5 +1,13 @@
+// Creado Domingo 14 nov 2021
 /* @author Ailer */
-public class Resultados {
+
+/*        
+. La clase Resultados contiene variables para el analisis de los cruces.
+* Está clase fue creada con el fin de poder obtener de forma rápida y siguiendo 
+* las caracteristicas de  POO los valores de analisis, para un fácil manejo de datos.
+*/
+public class Resultados implements Cloneable{
+    //Atributos
     public int memoria = 0;
     public double tiempo = 0;
     public int asignaciones = 0;
@@ -15,9 +23,13 @@ public class Resultados {
         this.lineas = lineas;
     }
 
-    public Resultados() {
-    }
-
+    public Resultados() { }
+    
+    /*
+    * Funciones 'get' retornan  los atributos
+    * Funciones 'set' cambian los atributos
+    * Funciones 'aumentar' aumenta dado el parametro los atributos
+    */
     public int getAsignaciones() {
         return asignaciones;
     }
@@ -72,5 +84,11 @@ public class Resultados {
 
     public void aumentarLineas(int aumento) {
         this.lineas += aumento;
+    }
+    
+    // Metodo usado para clonar un objecto
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return (Resultados) super.clone();
     }
 }
